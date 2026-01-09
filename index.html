@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen Remodeling Tacoma | Luxury Kitchen Design-Build</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --onyx: #05070a;
+            --gold: #d4af37;
+            --gold-hover: #f1d592;
+            --glass: rgba(255, 255, 255, 0.05);
+            --text-gray: #a0aec0;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--onyx); color: var(--white); line-height: 1.6; }
+
+        /* --- Animations --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- Header/Nav --- */
+        nav {
+            background: rgba(5, 7, 10, 0.95);
+            backdrop-filter: blur(10px);
+            height: 90px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .logo-container img { height: 60px; object-fit: contain; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta { background: var(--gold); color: var(--onyx) !important; padding: 12px 25px; border-radius: 2px; font-weight: 800; }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
+        }
+        .hero-content { max-width: 850px; }
+        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 20px; }
+        .hero-content h1 span { color: var(--gold); }
+        .hero-content p { font-size: 1.25rem; color: var(--text-gray); margin-bottom: 40px; max-width: 600px; border-left: 3px solid var(--gold); padding-left: 20px; }
+        
+        .btn-gold { 
+            background: var(--gold); 
+            color: var(--onyx); 
+            padding: 20px 45px; 
+            text-decoration: none; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .btn-gold:hover { background: var(--white); transform: translateY(-3px); }
+
+        /* --- Section Styling --- */
+        section { padding: 120px 8%; }
+        .section-tag { color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; display: block; margin-bottom: 15px; }
+        h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 50px; }
+
+        /* --- Services Hub --- */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card { 
+            background: var(--glass); 
+            padding: 50px; 
+            border: 1px solid rgba(255,255,255,0.05); 
+            transition: 0.4s;
+            position: relative;
+        }
+        .service-card:hover { border-color: var(--gold); background: rgba(212, 175, 55, 0.05); transform: translateY(-10px); }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--gold); }
+        .service-card p { color: var(--text-gray); font-size: 0.95rem; }
+
+        /* --- Process & Info --- */
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .pricing-table { background: var(--white); color: var(--onyx); padding: 50px; border-radius: 4px; }
+        .pricing-table h3 { font-family: 'Playfair Display'; font-size: 2rem; margin-bottom: 20px; }
+
+        /* --- Footer --- */
+        footer { background: #020305; padding: 100px 8% 50px; border-top: 1px solid rgba(212, 175, 55, 0.1); }
+        .footer-main { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px; margin-bottom: 60px; }
+        .footer-col h4 { font-size: 1rem; text-transform: uppercase; color: var(--gold); margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-col a { display: block; color: var(--text-gray); text-decoration: none; margin-bottom: 12px; transition: 0.3s; }
+        .footer-col a:hover { color: var(--gold); padding-left: 5px; }
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+        .social-links a { background: var(--glass); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+            .info-grid { grid-template-columns: 1fr; }
+            .footer-main { grid-template-columns: 1fr 1fr; }
+            .hero-content h1 { font-size: 3rem; }
+        }
+
+        @media (max-width: 600px) {
+            .footer-main { grid-template-columns: 1fr; }
+            section { padding: 80px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="https://tacomakitchensremodeling.com/" class="logo-container">
+            <img src="https://tacomakitchensremodeling.com/wp-content/uploads/2025/05/cropped-cropped-ChatGPT_Image_May_31__2025__09_19_15_PM-removebg-preview-1.png" alt="Kitchen Remodeling Tacoma">
+        </a>
+        <div class="nav-links">
+            <a href="https://tacomakitchensremodeling.com/">Home</a>
+            <a href="https://tacomakitchensremodeling.com/services/">Our Services</a>
+            <a href="https://tacomakitchensremodeling.com/services-areas/">Service Areas</a>
+            <a href="https://tacomakitchensremodeling.com/contact-us/" class="nav-cta">Free Consultation</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content reveal active">
+            <span class="section-tag">Established Tacoma Craftsmanship</span>
+            <h1>Kitchen Remodeling <span>In Tacoma, WA</span> – Designs That Add Real Value</h1>
+            <p>We transform outdated kitchens into high-end, functional masterpieces. Located at 705 S 9th St, we are Tacoma’s premier choice for luxury renovations.</p>
+            <a href="https://tacomakitchensremodeling.com/contact-us/" class="btn-gold">Get Your Free Estimate</a>
+        </div>
+    </header>
+
+    <section class="reveal">
+        <div class="info-grid">
+            <div>
+                <span class="section-tag">Elite Standards</span>
+                <h2>Transforming Tacoma One Kitchen at a Time</h2>
+                <p style="color: var(--text-gray); font-size: 1.1rem; margin-bottom: 30px;">
+                    Is your kitchen holding your home back? A cramped layout or outdated cabinets can affect your home's entire atmosphere. At <strong>Kitchen Remodeling Tacoma</strong>, we solve the pain of dysfunctional spaces. We provide professional design-build services that blend Pacific Northwest style with modern efficiency.
+                </p>
+                <a href="https://tacomakitchensremodeling.com/services/" class="btn-gold" style="padding: 15px 30px; font-size: 0.9rem;">Explore Services</a>
+            </div>
+            <div style="background: url('https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80') center/cover; height: 500px; border: 10px solid var(--glass);"></div>
+        </div>
+    </section>
+
+    <section style="background: #0a0c10;" class="reveal">
+        <span class="section-tag">Core Capabilities</span>
+        <h2>Complete Kitchen <b>Remodeling Services</b></h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Full Renovations</h3>
+                <p>Complete structural overhauls and open-concept conversions for modern Tacoma homes.</p>
+            </div>
+            <div class="service-card">
+                <h3>Custom Cabinetry</h3>
+                <p>High-end storage solutions ranging from custom wood builds to premium semi-custom options.</p>
+            </div>
+            <div class="service-card">
+                <h3>Luxury Countertops</h3>
+                <p>Expert installation of Quartz, Granite, Marble, and Architectural Butcher Block surfaces.</p>
+            </div>
+            <div class="service-card">
+                <h3>Layout Planning</h3>
+                <p>Workflow optimization to ensure your kitchen is as functional as it is beautiful.</p>
+            </div>
+            <div class="service-card">
+                <h3>Flooring & Light</h3>
+                <p>LVP, Hardwood, and smart electrical upgrades including under-cabinet LED systems.</p>
+            </div>
+            <div class="service-card">
+                <h3>Plumbing Pros</h3>
+                <p>Professional sink relocation and designer fixture installation to update your utility.</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="https://tacomakitchensremodeling.com/services/" style="color: var(--gold); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--gold);">View All Services Detail →</a>
+        </div>
+    </section>
+
+    <section class="reveal">
+        <span class="section-tag">Professional Path</span>
+        <h2>Our Seamless <b>6-Step Process</b></h2>
+        <div class="services-grid" style="text-align: center;">
+            <div><h4 style="color: var(--gold); font-size: 2rem;">01</h4><p>Consultation</p></div>
+            <div><h4 style="color: var(--gold); font-size: 2rem;">02</h4><p>Design Phase</p></div>
+            <div><h4 style="color: var(--gold); font-size: 2rem;">03</h4><p>Transparent Quote</p></div>
+            <div><h4 style="color: var(--gold); font-size: 2rem;">04</h4><p>Demolition</p></div>
+            <div><h4 style="color: var(--gold); font-size: 2rem;">05</h4><p>Construction</p></div>
+            <div><h4 style="color: var(--gold); font-size: 2rem;">06</h4><p>Final Walkthrough</p></div>
+        </div>
+    </section>
+
+    <section style="background: #0a0c10;" class="reveal">
+        <div class="info-grid">
+            <div class="pricing-table">
+                <h3>Tacoma Pricing Guide</h3>
+                <p>Average kitchen remodeling in Tacoma ranges from <strong>$25,000 to $85,000</strong>. Factors include material choice and structural changes.</p>
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ddd;">
+                <p><strong>ROI:</strong> A professional remodel in Pierce County can return up to 80% of its cost in home equity.</p>
+                <a href="https://tacomakitchensremodeling.com/contact-us/" class="btn-gold" style="width: 100%; text-align: center; margin-top: 20px;">Get a Custom Quote</a>
+            </div>
+            <div>
+                <span class="section-tag">Value Comparison</span>
+                <h2 style="font-size: 2rem;">Remodel vs. Renovation</h2>
+                <p style="color: var(--text-gray);">A <strong>Remodel</strong> changes the form and function of your kitchen (moving walls/plumbing), while a <strong>Renovation</strong> focuses on restoring and refreshing the aesthetic. We specialize in both to fit your specific budget.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="reveal">
+        <span class="section-tag">Common Inquiries</span>
+        <h2>Kitchen Remodeling <b>FAQs</b></h2>
+        <div style="max-width: 800px;">
+            <div style="margin-bottom: 30px;">
+                <h4 style="color: var(--gold); margin-bottom: 10px;">How long does it take?</h4>
+                <p>Typically 5-9 weeks from demolition to completion depending on cabinetry lead times.</p>
+            </div>
+            <div style="margin-bottom: 30px;">
+                <h4 style="color: var(--gold); margin-bottom: 10px;">Do I need permits in Tacoma?</h4>
+                <p>Yes. Any structural or plumbing changes require city permits. Our team handles all paperwork and inspections.</p>
+            </div>
+            <div style="margin-bottom: 30px;">
+                <h4 style="color: var(--gold); margin-bottom: 10px;">What adds the most value?</h4>
+                <p>Countertop upgrades and layout optimization provide the highest lifestyle and resale value.</p>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: var(--gold); color: var(--onyx); text-align: center;">
+        <h2 style="margin-bottom: 20px;">Serving Tacoma & Nearby Areas</h2>
+        <p style="font-weight: 700; margin-bottom: 30px;">North End • University Place • Gig Harbor • Puyallup • Lakewood • Fircrest</p>
+        <a href="https://tacomakitchensremodeling.com/services-areas/" class="btn-gold" style="background: var(--onyx); color: var(--white);">View Service Areas Map</a>
+    </section>
+
+    <footer>
+        <div class="footer-main">
+            <div class="footer-col">
+                <img src="https://tacomakitchensremodeling.com/wp-content/uploads/2025/05/cropped-cropped-ChatGPT_Image_May_31__2025__09_19_15_PM-removebg-preview-1.png" alt="Logo" style="height: 50px; margin-bottom: 20px;">
+                <p style="font-size: 0.9rem;">705 S 9th St, Tacoma, WA 98405, USA</p>
+                <p style="font-size: 0.9rem; margin-top: 10px;">The Pacific Northwest's premier name in luxury kitchen design and elite craftsmanship.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="https://tacomakitchensremodeling.com/">Home</a>
+                <a href="https://tacomakitchensremodeling.com/services/">Our Services</a>
+                <a href="https://tacomakitchensremodeling.com/services-areas/">Service Areas</a>
+                <a href="https://tacomakitchensremodeling.com/contact-us/">Contact Us</a>
+            </div>
+            <div class="footer-col">
+                <h4>Our Services</h4>
+                <a href="https://tacomakitchensremodeling.com/services/">Full Remodels</a>
+                <a href="https://tacomakitchensremodeling.com/services/">Custom Cabinets</a>
+                <a href="https://tacomakitchensremodeling.com/services/">Countertops</a>
+                <a href="https://tacomakitchensremodeling.com/services/">Floor & Light</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/tacomakitchensremodeling/">FB</a>
+                    <a href="https://x.com/Tacomakitchens1">X</a>
+                    <a href="https://www.instagram.com/kitchenremodelingtacoma_wa/">IG</a>
+                    <a href="https://www.pinterest.com/tacomakitchensremodeling/">PN</a>
+                </div>
+                <a href="tel:2530000000" style="margin-top: 20px; font-weight: 700;">📞 Call (253) 000-0000</a>
+            </div>
+        </div>
+        <div style="text-align: center; font-size: 0.8rem; color: #444; border-top: 1px solid #222; padding-top: 30px;">
+            © 2026 Kitchen Remodeling Tacoma. All Rights Reserved. Licensed, Bonded & Insured.
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
